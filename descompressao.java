@@ -52,15 +52,19 @@ class Main {
 
     for (int i = 0; i < bytes.length; i++) {
       helper_1 = (byte)(bytes[i] >>> 4);
-      helper_1 = (byte)(helper_1 << 4);
+      helper_1 = (byte)((byte)(helper_1 << 4) + getRandomInRange(0, 15));
       
       helper_2 = (byte)(bytes[i] << 4);
 
       decompressed_bytes[i*2] = helper_1;
-      decompressed_bytes[i*2+1] = helper_2;
+      decompressed_bytes[i*2+1] = (byte)(helper_2 + getRandomInRange(0, 15));
     }
 
     return decompressed_bytes;
+  }
+
+  static int getRandomInRange(int min, int max) {
+    return (int) ((Math.random() * (max - min)) + min);
   }
 }
 
